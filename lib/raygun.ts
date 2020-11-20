@@ -28,6 +28,7 @@ import type { Request, Response, NextFunction } from "express";
 import { RaygunBatchTransport } from "./raygun.batch";
 import {
   addBreadcrumb,
+  addRequestBreadcrumb,
   getBreadcrumbs,
   runWithBreadcrumbs,
 } from "./breadcrumbs";
@@ -306,7 +307,10 @@ class Raygun {
   }
 
   breadcrumbs(req: Request, res: Response, next: NextFunction) {
-    runWithBreadcrumbs(next);
+    runWithBreadcrumbs(() => {
+      addRequestBreadcrumb(req);
+      next();
+    });
   }
 
   stop() {
