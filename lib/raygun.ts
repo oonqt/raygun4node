@@ -305,6 +305,10 @@ class Raygun {
     next(err);
   }
 
+  breadcrumbs(req: Request, res: Response, next: NextFunction) {
+    runWithBreadcrumbs(next);
+  }
+
   stop() {
     if (this._batchTransport) {
       debug("batch transport stopped");
