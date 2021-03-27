@@ -55,7 +55,7 @@ const DEFAULT_BATCH_FREQUENCY = 1000; // ms
 
 function emptyCallback() {}
 
-class Raygun {
+export class Raygun {
   _apiKey: string | undefined;
   _filters: string[] = [];
   _user: RawUserData | undefined;
